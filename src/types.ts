@@ -28,6 +28,8 @@ export interface GameState {
   turnTimeLeft: number;
   teams: Team[];
   usedQuestions: string[];
+  currentRoom?: string;
+  inventory?: any[];
 }
 
 export interface GameContextType {

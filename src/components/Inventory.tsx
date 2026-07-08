@@ -6,6 +6,7 @@ import { Backpack } from 'lucide-react';
 export const Inventory: React.FC = () => {
   const { state } = useGame();
   const [isOpen, setIsOpen] = useState(false);
+  const inventory = state.inventory || [];
 
   if (state.currentRoom === '/' || state.currentRoom === '/intro') return null;
 
@@ -34,7 +35,7 @@ export const Inventory: React.FC = () => {
         }}
       >
         <Backpack size={32} />
-        {state.inventory.length > 0 && (
+        {inventory.length > 0 && (
           <div style={{
             position: 'absolute',
             top: '-5px',
@@ -50,7 +51,7 @@ export const Inventory: React.FC = () => {
             fontSize: '14px',
             fontWeight: 'bold',
           }}>
-            {state.inventory.length}
+            {inventory.length}
           </div>
         )}
       </motion.button>
@@ -81,13 +82,13 @@ export const Inventory: React.FC = () => {
               Inventario
             </h3>
             
-            {state.inventory.length === 0 ? (
+            {inventory.length === 0 ? (
               <p style={{ color: 'var(--color-text-muted)', textAlign: 'center', marginTop: '40px' }}>
                 Tu inventario está vacío.
               </p>
             ) : (
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
-                {state.inventory.map((item) => (
+                {inventory.map((item: any) => (
                   <div key={item.id} style={{
                     backgroundColor: 'rgba(255,255,255,0.05)',
                     padding: '10px',
