@@ -13,6 +13,7 @@ const Room3: React.FC = () => {
   
   const [question, setQuestion] = useState<Question | null>(null);
   const [hiddenOptions, setHiddenOptions] = useState<number[]>([]);
+  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
 
   useEffect(() => {
     if (!question) {
@@ -21,7 +22,8 @@ const Room3: React.FC = () => {
         const randomIndex = Math.floor(Math.random() * availableQuestions.length);
         setQuestion(availableQuestions[randomIndex]);
       } else {
-        setQuestion(questionBank[0]);
+        const fallbackQs = questionBank.filter(q => !q.isWorldCup && q.level === 3);
+        setQuestion(fallbackQs[Math.floor(Math.random() * fallbackQs.length)]);
       }
     }
   }, [state.usedQuestions, question]);
@@ -102,6 +104,8 @@ const Room3: React.FC = () => {
              </Button>
           ))}
         </div>
+        {feedback === 'correct' && <p style={{ color: 'var(--color-gold)', fontSize: '24px', fontWeight: 'bold', marginTop: '20px' }}>¡Correcto! Avanzando...</p>}
+        {feedback === 'incorrect' && <p style={{ color: '#ff4444', fontSize: '24px', fontWeight: 'bold', marginTop: '20px' }}>¡Respuesta Incorrecta! Cambio de turno.</p>}
         <Lifelines onFiftyFifty={handleFiftyFifty} onSkip={handleSkip} />
       </motion.div>
     </motion.div>
