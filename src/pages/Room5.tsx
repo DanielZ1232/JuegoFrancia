@@ -29,11 +29,21 @@ const Room5: React.FC = () => {
   }, [state.usedQuestions, question]);
 
   const handleAnswer = (index: number) => {
-    if (!question) return;
+    if (!question || feedback) return;
     const isCorrect = index === question.correctAnswerIndex;
-    answerQuestion(isCorrect, question.id, '/room6');
+    
     if (isCorrect) {
-       navigate('/room6');
+      setFeedback('correct');
+      setTimeout(() => {
+        answerQuestion(true, question.id, '/room6');
+        navigate('/room6');
+      }, 2000);
+    } else {
+      setFeedback('incorrect');
+      setTimeout(() => {
+        setFeedback(null);
+        answerQuestion(false, question.id, '/room6');
+      }, 3000);
     }
   };
 
