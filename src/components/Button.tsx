@@ -16,6 +16,7 @@ export const Button: React.FC<ButtonProps> = ({
   onClick, 
   className = '',
   size = 'medium',
+  style,
   ...rest 
 }) => {
   
@@ -77,7 +78,7 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <motion.button
       onClick={onClick}
-      style={{ ...baseStyle, ...sizes[size], ...variants[variant] }}
+      style={{ ...baseStyle, ...sizes[size], ...variants[variant], ...(style as React.CSSProperties) }}
       whileHover={hoverVariants[variant]}
       whileTap={{ scale: 0.95 }}
       className={className}
