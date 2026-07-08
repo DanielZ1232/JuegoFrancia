@@ -10,7 +10,7 @@ export const Timer: React.FC = () => {
   const currentTeam = state.teams[state.currentTeamIndex];
 
   useEffect(() => {
-    if (currentTeam.currentRoom !== '/' && currentTeam.currentRoom !== '/intro' && !state.isTurnTransition) {
+    if (currentTeam.currentRoom !== '/' && currentTeam.currentRoom !== '/intro' && currentTeam.currentRoom !== '/final' && !state.isTurnTransition) {
       const interval = setInterval(() => {
         tickTimer();
       }, 1000);
