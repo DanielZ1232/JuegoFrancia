@@ -47,7 +47,7 @@ export const TurnAnnouncer: React.FC = () => {
         ¡Turno del {currentTeam.name}!
       </motion.h2>
       <p style={{ fontSize: '24px', marginBottom: '40px', color: 'var(--color-text-muted)' }}>
-        Prepárense. Tienen 2 minutos para intentar avanzar.
+        Prepárense. Tienen 50 segundos para intentar avanzar.
       </p>
       
       <Button variant="primary" size="large" onClick={handleStartTurn}>

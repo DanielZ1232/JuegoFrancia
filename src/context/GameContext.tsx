@@ -7,7 +7,7 @@ const INITIAL_TIME = {
   hard: 1800, // 30 min
 };
 
-const TURN_TIME = 120; // 2 minutes per turn
+const TURN_TIME = 50; // 50 seconds per turn
 
 const initialState: GameState = {
   teams: [],
